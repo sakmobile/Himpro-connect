@@ -4,11 +4,9 @@ typings/*
 images/*
 isonline_mysql
 npm-debug.log
-package-lock.json
 .settings/*
 .git/*
 bower_components/*
-/config
 .DS_Store
 .idea
 .env
@@ -19,7 +17,6 @@ data/
 *.bak
 *.test
 *.tmp
-*.sql
 null
 /sent_result.txt
 /docker-compose.yml
