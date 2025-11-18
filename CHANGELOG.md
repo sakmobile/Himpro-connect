@@ -1,3 +1,8 @@
+# 3.9.1
+## Feature
+## Bug Fix
+  - Bug: SQL ไม่ได้ระบุ first() ในการนับจำนวน
+  
 # 3.9.0
 ## Feature
   - เพิ่ม Feature สำหรับการประเมินความพึงพอใจใน MOPH Alert

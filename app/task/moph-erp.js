@@ -42,7 +42,6 @@ exports.sendBedOccupancy = sendBedOccupancy;
 const sendBedOccupancyByWard = async (date) => {
     try {
         let rows = await hismodel_1.default.concurrentIPDByWard(db, date);
-        console.log('concurrentIPDByWard rows:', rows?.length || 0);
         if (rows && rows.length) {
             rows = rows.map(v => {
                 return { ...v, date, hospcode, his: hisProvider || '' };

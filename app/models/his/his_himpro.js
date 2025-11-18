@@ -4,7 +4,6 @@ exports.HisHimproModel = void 0;
 const maxLimit = 250;
 const hcode = process.env.HOSPCODE;
 let hisHospcode = process.env.HOSPCODE;
-
 class HisHimproModel {
     check() {
         return true;
