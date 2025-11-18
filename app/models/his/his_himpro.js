@@ -219,34 +219,38 @@ class HisHimproModel {
             .select('*')
             .limit(maxLimit);
     }
-    getVisitForMophAlert(db, date, isRowCount = false, start = 0, limit = 1000) {
+    
+    async getVisitForMophAlert(db, date, isRowCount = false, start = -1, limit = 1000) {
+   
 
-        const baseSql = db('getvisitformophalert')
-            .where('date_service', date);
+    const baseSql = db('getvisitformophalert')
+        .where('date_service', date);
 
-        if (isRowCount) {
-            return baseSql
-                .clone()
-                .count('* as total_rows')
-                .first();
-        }
-
-        return baseSql
-            .clone()
-            .select(
-                'hospcode',
-                'cid',
-                'hn',
-                'vn',
-                'department_type',
-                'department_code',
-                'department_name',
-                'date_service',
-                'time_service'
-            )
-            .orderBy(['date_service', 'time_service'])
-            .offset(start)
-            .limit(limit);
+    if (isRowCount) {
+        return baseSql.clone().count('* as row_count').first();
     }
+
+    let sql = baseSql.clone()
+        .select(
+            'hospcode',
+            'cid',
+            'hn',
+            'vn',
+            'department_type',
+            'department_code',
+            'department_name',
+            'date_service',
+            'time_service'
+        )
+        .orderBy(['date_service', 'time_service']);
+
+    if (start >= 0) {
+        sql = sql.offset(start).limit(limit);
+    }
+
+    const rows = await sql;
+    // ถ้า view ไม่มีคอลัมน์ status ก็ไม่ต้อง filter เพิ่ม
+    return rows;
+}
 }
 exports.HisHimproModel = HisHimproModel;
