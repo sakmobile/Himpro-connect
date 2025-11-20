@@ -22,4 +22,5 @@ data/
 null
 /sent_result.txt
 /docker-compose.yml
+app/test-moph-alert.js
 

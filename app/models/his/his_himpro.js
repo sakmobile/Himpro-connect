@@ -4,6 +4,7 @@ exports.HisHimproModel = void 0;
 const maxLimit = 250;
 const hcode = process.env.HOSPCODE;
 let hisHospcode = process.env.HOSPCODE;
+
 class HisHimproModel {
     check() {
         return true;
@@ -231,18 +232,17 @@ class HisHimproModel {
     }
 
     let sql = baseSql.clone()
-        .select(
-            'hospcode',
-            'cid',
-            'hn',
-            'vn',
-            'department_type',
-            'department_code',
-            'department_name',
-            'date_service',
-            'time_service'
-        )
-        .orderBy(['date_service', 'time_service']);
+  .select(
+    'hospcode',
+    'cid',
+    'hn',
+    'vn',
+    'department_type',
+    'department_code',
+    'department_name',
+    db.raw('DATE_FORMAT(date_service, "%Y-%m-%d") AS date_service'),
+    'time_service'
+  );
 
     if (start >= 0) {
         sql = sql.offset(start).limit(limit);
