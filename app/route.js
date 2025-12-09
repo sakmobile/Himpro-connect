@@ -1,11 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = router;
 let rootPrefix = process.env.ROUTE_PREFIX || '';
 rootPrefix = rootPrefix ? ('/' + rootPrefix) : '';
-const hisProvider = (process.env.HIS_PROVIDER || 'not-found').toLowerCase();
+const hisProvider = ((process.env.HIS_PROVIDER || 'not-found') + '').toLowerCase();
 async function router(fastify) {
+    const hisProviderLower = hisProvider.toLowerCase();
     fastify.register(require('./routes/index'), { prefix: "/" });
-    fastify.register(require('./routes/his/index'), { prefix: `${rootPrefix}/${hisProvider}` });
+    fastify.register(require('./routes/his/index'), { prefix: `${rootPrefix}/${hisProviderLower}` });
     fastify.register(require('./routes/his/index'), { prefix: `${rootPrefix}/HIS` });
     fastify.register(require('./routes/refer/v3'), { prefix: `${rootPrefix}/refer` });
     fastify.register(require('./routes/refer/v3'), { prefix: `${rootPrefix}/refer/his` });
@@ -26,4 +28,3 @@ async function router(fastify) {
     fastify.register(require('./routes/pcc/index'), { prefix: `${rootPrefix}/pcc`, logger: true });
     fastify.register(require('./routes/qdrugstore/index'), { prefix: `${rootPrefix}/qdrugstore`, logger: true });
 }
-exports.default = router;

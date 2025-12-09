@@ -24,6 +24,7 @@ const his_himpro_1 = require("../../models/his/his_himpro");
 const his_epis_1 = require("../../models/his/his_epis");
 const his_mbase_1 = require("../../models/his/his_mbase");
 const his_vpm_1 = require("../../models/his/his_vpm");
+const his_medical2020_1 = require("../../models/his/his_medical2020");
 console.log('HIS Provider:', process.env.HIS_PROVIDER);
 const hisProvider = (process.env.HIS_PROVIDER || 'unknown-his').toLowerCase();
 let hisModel;
@@ -96,10 +97,14 @@ switch (hisProvider) {
         hisModel = new his_mitnet_1.HisMitnetModel();
         break;
     case 'epis':
+    case 'ephis':
         hisModel = new his_epis_1.HisEPisModel();
         break;
     case 'mbase':
         hisModel = new his_mbase_1.HisMBaseModel();
+        break;
+    case 'medical2020':
+        hisModel = new his_medical2020_1.HisMedical2020Model();
         break;
     default:
         hisModel = new his_1.HisModel();

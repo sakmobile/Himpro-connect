@@ -1,13 +1,28 @@
+# 3.9.3
+## Feature
+  - เพิ่มการตรวจสอบและคืนค่า Request process Bedno และ Ward
+
+# 3.9.2
+## Feature
+  - ปรับ SQL ให้นับคงค้างตามรหัสมาตรฐาน กบรส.
+  - Request process occpancy (เฉพาะส่วนกลาง)
+  - เพิ่ม SQL ประเมินความพึงพอใจ HIS: JHCIS
+  - เพิ่มการบันทึก occupancy_date เป็นเวลาสุดท้ายของข้อมูล
+
 # 3.9.1
 ## Feature
+  - ปรับ SQL getVisitForMophAlert ใน HIS iHospital ให้รองรับ IPD
+  - Filter bedno ให้เลือกเฉพาะที่มี wardcode
 ## Bug Fix
-  - Bug: SQL ไม่ได้ระบุ first() ในการนับจำนวน
-  
+  - SQL ไม่ได้ระบุ first() ในการนับจำนวน
+  - ปรับ SQL ipt.spclty!= "" เป็น ipt.spclty!= '' เนื่องจาก pg ไม่รองรับ
+
 # 3.9.0
 ## Feature
   - เพิ่ม Feature สำหรับการประเมินความพึงพอใจใน MOPH Alert
   - เพิ่มการส่งข้อมูลการรับบริการ getVisitForMophAlert เพื่อใช้ประเมินความพึงพอใจ
   - เพิ่ม SQL Lite เพื่อบันทึกข้อมูลการส่ง MOPH Alert
+  - แก้ไขการส่ง MOPH Alert เป็นที่ละ 100 rows แทนตัวเดิมที่ส่งทีละ 500 rows
 
 # 3.8.14
 ## Feature
